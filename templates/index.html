@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/static/css/jquery-ui.min.css" rel="stylesheet"> -->
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navbar">
+            <h1>Keyword Extractor</h1>
+        </div>
+        <div class="content">
+            <div>
+                <form action="{{url_for('Summarize')}}" method="post">
+                    <textarea class="input" name="data" id="data" cols="100" rows="10" placeholder="Enter the text" required="required" ></textarea>
+                    <div class="sub">
+                        <button class="subbutton" onclick="check()">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <textarea class="output" id="myTextarea" cols="100" rows="10" style="height:200px;" name="result" readonly placeholder="Your Keywords">
+                    {{result}}
+                </textarea>
+                <div class="cpy">
+                    <button class="copybutton" onclick="copyText()">Copy Text</button>
+                    <button class="copybutton" onclick="clearTextarea()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function copyText() {
+            var textarea = document.getElementById("myTextarea");
+            textarea.select();
+            document.execCommand("copy");
+            alert("Text copied to clipboard!");
+        }
+        function clearTextarea() {
+            var textarea = document.getElementById("myTextarea");
+            textarea.value = ""; // Clear the textarea content
+        }
+    </script>
+</body>
+</html>
